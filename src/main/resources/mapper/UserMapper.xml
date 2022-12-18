@@ -20,7 +20,7 @@
         select <include refid="allFiled"></include> from user where email=#{email}
     </select>
 
-    <insert id="insertUser">
+    <insert id="insertUser" parameterType="User" keyProperty="id">
         insert into user (<include refid="allFiledExpectId"></include>) values
         (#{user.username},#{user.password},#{user.salt},#{user.email},#{user.type},
         #{user.status},#{user.activationCode},#{user.headerUrl},#{user.createTime}

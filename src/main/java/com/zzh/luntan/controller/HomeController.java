@@ -25,6 +25,7 @@ public class HomeController {
     // 路径中的参数名current与方法中的属性current名字一致，可以自动注入
     @GetMapping(path = "/index")
     public String index(PageHelper pageHelper, Model model) {
+        pageHelper.setUrlPath("/index");
         // 设置总页数
         pageHelper.setRows(postService.postCounts(0));
         // 搜索id为0的所有帖子

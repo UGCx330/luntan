@@ -20,7 +20,11 @@ public class PageHelper {
     }
 
     public int getLastTwoPage() {
-        return Math.min(current + 2, rows);
+        return Math.min(current + 2, getTotalPages());
+    }
+
+    public int getTotalPages() {
+        return rows % limit == 0 ? rows / limit : rows / limit + 1;
     }
 
     public void setLimit(int limit) {

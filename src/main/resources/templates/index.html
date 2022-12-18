@@ -6,13 +6,13 @@
     <link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           crossorigin="anonymous">
-    <link rel="stylesheet" href="css/global.css"/>
+    <link rel="stylesheet" th:href="@{css/global.css}"/>
     <title>牛客网-首页</title>
 </head>
 <body>
 <div class="nk-container">
     <!-- 头部 -->
-    <header class="bg-dark sticky-top">
+    <header class="bg-dark sticky-top" th:fragment="header">
         <div class="container">
             <!-- 导航 -->
             <nav class="navbar navbar-expand-lg navbar-dark">
@@ -34,7 +34,7 @@
                                     class="badge badge-danger">12</span></a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
-                            <a class="nav-link" href="site/register.html">注册</a>
+                            <a class="nav-link" th:href="@{/register}">注册</a>
                         </li>
                         <li class="nav-item ml-3 btn-group-vertical">
                             <a class="nav-link" href="site/login.html">登录</a>
@@ -156,7 +156,8 @@
             <!-- 分页 -->
             <nav class="mt-5" th:if="${pageHelper.getRows()!=0}">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" th:href="@{${pageHelper.getUrlPath()}(current=1)}">首页</a></li>
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{${pageHelper.getUrlPath()}(current=1)}">首页</a></li>
 
                     <li th:class="|page-item ${pageHelper.getCurrent()==1?'disabled':''}|">
                         <a class="page-link"
@@ -169,7 +170,7 @@
                            th:href="@{${pageHelper.getUrlPath()}(current=${i})}" th:text="${i}">1</a>
                     </li>
 
-                    <li th:class="|page-item ${pageHelper.getCurrent()==pageHelper.getRows()/pageHelper.getLimit()+1?'disabled':''}|">
+                    <li th:class="|page-item ${pageHelper.getCurrent()==pageHelper.getTotalPages()? 'disabled':''}|">
                         <a class="page-link"
                            th:href="@{${pageHelper.getUrlPath()}(current=${pageHelper.getCurrent()+1})}">下一页</a>
                     </li>
@@ -251,7 +252,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-<script src="js/global.js"></script>
-<script src="js/index.js"></script>
+<script src="@{js/global.js}"></script>
+<script src="@{js/index.js}"></script>
 </body>
 </html>
